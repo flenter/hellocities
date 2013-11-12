@@ -1,0 +1,5 @@
+django==1.6
+dj-database-url==0.2.2
+psycopg2==2.5.1
+geopy==0.95.1
+gunicorn==18.0
