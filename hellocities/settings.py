@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'locations',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,3 +81,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = [
+    os.path.join('locations', 'templates')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        env="WERCKER_POSTGRESQL_URL",
+        default='postgis://db-user:@localhost:5432/hellocities'
+    )
+}
