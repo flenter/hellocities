@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "locations.location", "fields": {"geom": "POINT (4.8882293701171999 52.3759782314299969)", "name": "Amsterdam"}}, {"pk": 2, "model": "locations.location", "fields": {"geom": "POINT (-122.4371337890599989 37.7852439880370028)", "name": "San Francisco"}}]
