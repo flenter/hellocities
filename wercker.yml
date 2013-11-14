@@ -7,8 +7,14 @@ services:
 build:
   # The steps that will be executed on build
   steps:
+
+    - script:
+        name: set postgis connection string
+        code: |
+          export WERCKER_POSTGRESQL_URL="postgis://postgres:wercker@$WERCKER_POSTGRESQL_HOST:5432/werckerdb1"
+
     - install-packages:
-        packages: postgresql-9.3-postgis
+        packages: postgresql-client-9.3 postgis
 
     # Use this virtualenv step for python 3.2
     - virtualenv:
