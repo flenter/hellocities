@@ -33,3 +33,43 @@ build:
         name: run django tests
         code: |
           python manage.py test
+deploy:
+  steps:
+    - add-to-known_hosts:
+        hostname: $TARGET_MACHINE
+
+    - mktemp:
+        envvar: PRIVATEKEY_PATH
+    - create-file:
+        name: write key
+        filename: $PRIVATEKEY_PATH
+        content: $PEM_FILE_CONTENT
+        overwrite: true
+    - pip-install:
+        name: pip install ansible
+        requirements_file: ""
+        packages_list: "ansible==1.3.4"
+
+    - script:
+        name: Create /etc/ansible
+        code: |
+          sudo mkdir -p /etc/ansible
+          sudo chmod 777 /etc/ansible
+
+    - create-file:
+        name: create host file for ansible
+        filename: /etc/ansible/hosts
+        content: $TARGET_MACHINE
+        overwrite: true
+
+    - script:
+        name: Rsync source files
+        code: |
+          rsync -avz --rsh="ssh -i $PRIVATEKEY_PATH" `pwd`/* ubuntu@$TARGET_MACHINE:$REMOTE_SOURCE_DIR
+    # - virtualenv
+    - script:
+        name: run ansible
+        code: |
+          chmod 400 $PRIVATEKEY_PATH
+          cd deployment
+          ansible-playbook site.yml --private-key=$PRIVATEKEY_PATH -vvvv --extra-vars "source_location=$REMOTE_SOURCE_DIR source_location_auto_remove=true"
