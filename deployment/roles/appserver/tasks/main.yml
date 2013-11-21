@@ -28,13 +28,15 @@
   sudo: yes
   action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}
 
-- name: Change project directorys' permissions.
+- name: Change project directory owner.
   sudo: yes
   action: shell chown -R ${project_name}:${project_name} ${project_root}
 
 - name: Put source files in correct location
   sudo: yes
   action: shell cp -R ${source_location}/* ${project_root}
+  sudo: yes
+  sudo_user: ${project_name}
 
 - name: Remove files from original source location
   sudo: yes
