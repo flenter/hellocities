@@ -28,6 +28,10 @@
   sudo: yes
   action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}
 
+- name: Update the project/src directory.
+  sudo: yes
+  action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}/src
+
 - name: Update the project/media directory.
   sudo: yes
   action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}/media
