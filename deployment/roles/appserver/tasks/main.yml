@@ -137,15 +137,7 @@
 
 - name: app is started
   sudo: yes
-  action: supervisorctl name=${project_name} state=started
-
-- name: ensure static folder exists
-  action: file path=${project_root}/static state=directory owner=${project_name} group=${project_name}
-  sudo: yes
-
-- name: ensure static media exists
-  action: file path=${project_root}/media state=directory owner=${project_name} group=${project_name}
-  sudo: yes
+  action: supervisorctl name=${project_name} state=restarted
 
 - name: remove default nginx site
   sudo: yes

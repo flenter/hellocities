@@ -13,14 +13,14 @@ echo "Starting $NAME"
 
 # Activate the virtual environment
 cd $DJANGODIR
-source venv/bin/activate
+source {{project_root}}/venv/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 export WERCKER_POSTGRESQL_URL={{database_url}}
 export DJANGO_DEBUG=False
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
-exec venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec {{project_root}}/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
   --user=$USER --group=$GROUP \
