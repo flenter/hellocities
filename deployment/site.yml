@@ -3,19 +3,10 @@
   sudo: yes
   vars_files:
     - vars.yml
-  tasks:
-    - name: Install keyczar
-      action: apt pkg=python-keyczar state=installed update-cache=yes
-- hosts: all
-  sudo: yes
-  accelerate: true
-  vars_files:
-    - vars.yml
   roles:
     - common
 - hosts: all
   sudo: no
-  accelerate: true
   vars_files:
     - vars.yml
   roles:
