@@ -81,7 +81,7 @@
 
 - name: ensure required packages are installed.
   sudo: yes
-  action: pip requirements=${project_root}/requirements.txt virtualenv=${project_root}/venv/ virtualenv_command=virtualenv-3.2
+  action: pip requirements=${project_root}/src/requirements.txt virtualenv=${project_root}/venv/ virtualenv_command=virtualenv-3.2
 
 - name: ensure right permissions
   action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}/venv
