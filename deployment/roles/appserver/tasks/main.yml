@@ -28,6 +28,14 @@
   sudo: yes
   action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}
 
+- name: Update the project/media directory.
+  sudo: yes
+  action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}/media
+
+- name: Update the project/static directory.
+  sudo: yes
+  action: file group=${project_name} owner=${project_name} mode=755 state=directory path=${project_root}/static
+
 - name: Change project directory owner.
   sudo: yes
   action: shell chown -R ${project_name}:${project_name} ${project_root}
@@ -43,7 +51,7 @@
   action: shell find . -name ".*" -exec rm -rf {} \;
   when: source_location_auto_remove == "false"
 
-- name: Create the project directory.
+- name: Create the run directory.
   sudo: yes
   action: file state=directory path=${project_root}/run group=${project_name} owner=${project_name}
 

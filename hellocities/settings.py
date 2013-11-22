@@ -86,7 +86,10 @@ TEMPLATE_DIRS = [
     os.path.join('locations', 'templates')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.environ.get(
+    "DJANGO_STATIC_ROOT",
+    os.path.join(BASE_DIR, 'static')
+)
 
 import dj_database_url
 
