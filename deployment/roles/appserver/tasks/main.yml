@@ -42,7 +42,7 @@
 
 - name: Put source files in correct location
   sudo: yes
-  action: shell cp -R ${source_location}/* ${project_root}
+  action: shell cp -R ${source_location}/* ${project_root}/src
   sudo: yes
   sudo_user: ${project_name}
 
