@@ -137,7 +137,7 @@
 
 - name: app is started
   sudo: yes
-  action: supervisorctl name=${project_name} state=restarted
+  action: supervisorctl name=${project_name} state=started
 
 - name: ensure static folder exists
   action: file path=${project_root}/static state=directory owner=${project_name} group=${project_name}
