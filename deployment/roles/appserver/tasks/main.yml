@@ -52,7 +52,7 @@
 
 - name: Remove files from original source location
   sudo: yes
-  action: shell find . -name ".*" -exec rm -rf {} \;
+  action: shell rm -rf {{source_location}}
   when: source_location_auto_remove == "true"
 
 - name: Create the run directory.
