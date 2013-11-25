@@ -49,6 +49,10 @@ deploy:
         name: pip install ansible
         requirements_file: ""
         packages_list: "ansible"
+    - install-packages:
+        name: install python keyczar
+        packages: python-keyczar
+
     - script:
         name: Create /etc/ansible
         code: |
