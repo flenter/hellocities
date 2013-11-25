@@ -8,8 +8,6 @@ NUM_WORKERS=3                                       # how many worker processes 
 DJANGO_SETTINGS_MODULE={{project_name}}.settings    # which settings file should Django use
 DJANGO_WSGI_MODULE={{project_name}}.wsgi            # WSGI module name
 DJANGO_STATIC_ROOT={{project_root}}/static          # custom location for django static files
-DJANGO_DEBUG="False"
-DJANGO_ALLOWED_HOST={{hostname}}
 
 echo "Starting $NAME"
 
@@ -19,7 +17,9 @@ source {{project_root}}/venv/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 export WERCKER_POSTGRESQL_URL={{database_url}}
-export DJANGO_DEBUG=False
+export DJANGO_DEBUG="False"
+export DJANGO_ALLOWED_HOST={{hostname}}
+
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
 exec {{project_root}}/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \

@@ -26,7 +26,7 @@ if isinstance(DEBUG, str):
     if DEBUG.lower() == "true":
         DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     os.environ.get('DJANGO_ALLOWED_HOST', '127.0.0.1'),
