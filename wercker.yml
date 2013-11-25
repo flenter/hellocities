@@ -64,10 +64,11 @@ deploy:
     - script:
         name: Rsync source files
         code: |
+          ls -la $PRIVATEKEY_PATH
           rsync -avz --rsh="ssh -i $PRIVATEKEY_PATH" `pwd`/* ubuntu@$TARGET_MACHINE:$REMOTE_SOURCE_DIR
     - script:
         name: run ansible
         code: |
           chmod 400 $PRIVATEKEY_PATH
           cd deployment
-          ansible-playbook site.yml --private-key=$PRIVATEKEY_PATH --extra-vars "source_location=$REMOTE_SOURCE_DIR source_location_auto_remove=true hostname=$HOST_NAME"
+          ansible-playbook site.yml --private-key=$PRIVATEKEY_PATH --extra-vars "source_location=$REMOTE_SOURCE_DIR source_location_auto_remove=true hostname=$HOSTNAME"
