@@ -48,7 +48,7 @@
   sudo: yes
   action: shell cp -R {{source_location}}/* {{project_root}}/src
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
 
 - name: Remove files from original source location
   sudo: yes
@@ -98,15 +98,15 @@
 - name: sync database
   action: django_manage command=syncdb app_path={{project_root}}/src settings={{project_name}}.settings virtualenv={{project_root}}/venv
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
   environment:
-    WERCKER_POSTGRESQL_URL: {{database_url}}
+    WERCKER_POSTGRESQL_URL: "{{database_url}}"
 
 - name: ensure initial_data file was not loaded before
   action: stat path={{project_root}}/run/initial_data_loaded
   register: inital_data
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
   tags:
     - fixture
 
@@ -116,9 +116,9 @@
     - data/locations.json
     - data/users.json
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
   environment:
-    WERCKER_POSTGRESQL_URL: {{database_url}}
+    WERCKER_POSTGRESQL_URL: "{{database_url}}"
   when: inital_data.stat.exists == false
   tags:
     - fixture
@@ -126,7 +126,7 @@
 - name: mark initial_data as loaded
   action: shell touch {{project_root}}/run/initial_data_loaded
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
   tags:
     - fixture
   when: inital_data.stat.exists == false
@@ -154,8 +154,8 @@
 - name: collect static
   action: django_manage command=collectstatic app_path={{project_root}}/src settings={{project_name}}.settings virtualenv={{project_root}}/venv
   environment:
-    WERCKER_POSTGRESQL_URL: {{database_url}}
+    WERCKER_POSTGRESQL_URL: "{{database_url}}"
   sudo: yes
-  sudo_user: {{project_name}}
+  sudo_user: "{{project_name}}"
   tags:
     - static
