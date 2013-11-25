@@ -25,6 +25,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', False)
 if isinstance(DEBUG, str):
     if DEBUG.lower() == "true":
         DEBUG = True
+    else:
+        DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
