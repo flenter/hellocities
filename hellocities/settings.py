@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '$ac-290sdno2-tk*67*xia)2f(t#bd54^xnym8fzfz%!+%$i#_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ('DJANGO_DEBUG', False)
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
 if isinstance(DEBUG, str):
     if DEBUG.lower() == "true":
@@ -29,7 +29,7 @@ if isinstance(DEBUG, str):
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
-    os.environ('DJANGO_ALLOWED_HOST', '127.0.0.1'),
+    os.environ.get('DJANGO_ALLOWED_HOST', '127.0.0.1'),
 ]
 
 
