@@ -1,7 +1,7 @@
 ---
 
 - name: set locale to {{locale}}
-  action: command /usr/sbin/update-locale LANG=$locale LC_ALL={{locale}}
+  action: command /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}}
   sudo: yes
 
 - name: add key for postgres apt repository
