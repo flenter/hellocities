@@ -1,7 +1,7 @@
 ---
 
-- name: set locale to ${locale}
-  action: command /usr/sbin/update-locale LANG=$locale LC_ALL=${locale}
+- name: set locale to {{locale}}
+  action: command /usr/sbin/update-locale LANG=$locale LC_ALL={{locale}}
   sudo: yes
 
 - name: add key for postgres apt repository
@@ -17,7 +17,7 @@
   sudo: yes
 
 - name: Install required system packages.
-  action: apt pkg=${item} state=installed update-cache=yes state=installed
+  action: apt pkg={{item}} state=installed update-cache=yes state=installed
   sudo: yes
   with_items:
       - build-essential
