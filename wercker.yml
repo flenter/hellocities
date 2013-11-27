@@ -21,7 +21,7 @@ build:
         name: setup virtual environment
         python_location: /usr/bin/python3.2
 
-    - pip-install
+    - pip-install:
         name: install requirements.txt
 
     - pip-install:
