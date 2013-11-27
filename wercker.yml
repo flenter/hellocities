@@ -22,8 +22,10 @@ build:
         python_location: /usr/bin/python3.2
 
     - pip-install
+        name: install requirements.txt
 
-    - pip-install
+    - pip-install:
+        name: install selenium
         packages_list: selenium
         requirements_file: ""
 
