@@ -22,6 +22,11 @@ build:
         python_location: /usr/bin/python3.2
 
     - pip-install
+
+    - pip-install
+        packages_list: selenium
+        requirements_file: ""
+
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
     - script:
@@ -32,7 +37,7 @@ build:
     - script:
         name: run django tests
         code: |
-          python manage.py test
+          python manage.py  test --liveserver=localhost:8082
 deploy:
   steps:
     - add-to-known_hosts:
