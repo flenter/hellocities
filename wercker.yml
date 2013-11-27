@@ -49,7 +49,7 @@ build:
     - script:
         name: run django tests
         code: |
-          python manage.py  test --liveserver=localhost:8082
+          python manage.py  test
 deploy:
   steps:
     - add-to-known_hosts:

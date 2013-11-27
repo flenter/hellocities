@@ -74,7 +74,6 @@ class MySeleniumTests(LiveServerTestCase):
 
     def test_locations(self):
         self.selenium.get('%s%s' % (self.live_server_url, '/locations/'))
-        print(dir(self.selenium))
         src = self.selenium.page_source
         text_found = re.search(r'text_to_search', src)
         self.assertFalse(text_found)
